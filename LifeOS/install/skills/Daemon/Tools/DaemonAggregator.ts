@@ -36,7 +36,7 @@ for (const k of ["LIFEOS_DIR", "LIFEOS_CONFIG_DIR", "PROJECTS_DIR"]) {
 // ─── Path Resolution ───
 
 const HOME = process.env.HOME || process.env.USERPROFILE || "";
-const LIFEOS_DIR = process.env.LIFEOS_DIR || join(HOME, ".claude", "LIFEOS");
+const LIFEOS_DIR = process.env.LIFEOS_DIR || join(HOME, ".config", "LIFEOS", "runtime");
 const USER_DIR = join(LIFEOS_DIR, "USER");
 const MEMORY_DIR = join(LIFEOS_DIR, "MEMORY");
 const TELOS_DIR = join(USER_DIR, "TELOS");

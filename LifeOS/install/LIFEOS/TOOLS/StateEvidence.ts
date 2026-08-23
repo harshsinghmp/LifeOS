@@ -36,7 +36,7 @@ for (const k of ["LIFEOS_DIR", "LIFEOS_CONFIG_DIR", "PROJECTS_DIR"]) {
 }
 
 const HOME = process.env.HOME ?? process.env.USERPROFILE ?? homedir();
-const LIFEOS_DIR = process.env.LIFEOS_DIR || join(HOME, ".claude", "LIFEOS");
+const LIFEOS_DIR = process.env.LIFEOS_DIR || join(HOME, ".config", "LIFEOS", "runtime");
 const CACHE_DIR = join(LIFEOS_DIR, "USER", "CACHE");
 export const EVIDENCE_CACHE_PATH = join(CACHE_DIR, "state-evidence.json");
 

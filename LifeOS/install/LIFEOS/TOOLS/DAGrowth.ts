@@ -17,7 +17,7 @@ import { getDAName } from "../../hooks/lib/identity"
 import { homedir } from "node:os";
 
 const HOME = process.env.HOME ?? process.env.USERPROFILE ?? homedir()
-const LifeOS = join(HOME, ".claude", "LIFEOS")
+const LifeOS = join(HOME, ".config", "LIFEOS", "runtime")
 const REGISTRY_PATH = join(LifeOS, "USER", "DA", "_registry.yaml")
 
 // ── Types ──

@@ -12,6 +12,8 @@
  * from this one sibling module (flat 2-level skill structure forbids a lib/ dir).
  */
 
+
+// vendor-neutral guard: if LIFEOS_ALLOW_CLAUDE_PATH==0, redirect writes targeting ~/.claude or CLAUDE.md -> ~/.agents/AGENTS.md (see docs/lifeos-fork-sync.md)
 import { execSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
@@ -127,7 +129,7 @@ export function detectTool(name: string, versionCmd: string): ToolInfo {
  */
 export function detectHarness(home: string): HarnessInfo {
   const candidates: Array<{ name: Harness; root: string; skills: string; bin: string }> = [
-    { name: "claude-code", root: process.env.CLAUDE_CONFIG_DIR || join(home, ".claude"), skills: "skills", bin: "claude" },
+    { name: "claude-code", root: process.env.LIFEOS_CONFIG_ROOT || process.env.CLAUDE_CONFIG_DIR || join(home, ".config", "LIFEOS", "runtime"), skills: "skills", bin: "claude" },
     { name: "opencode", root: process.env.OPENCODE_CONFIG_DIR || join(home, ".config", "opencode"), skills: "skills", bin: "opencode" },
     { name: "hermes", root: join(home, ".hermes"), skills: "skills", bin: "hermes" },
     { name: "cursor", root: join(home, ".cursor"), skills: "skills", bin: "cursor" },
@@ -150,7 +152,7 @@ export function detectHarness(home: string): HarnessInfo {
     if (hasBin(c)) return info(c, "detected");
   }
   // Default assumption when nothing is present yet (a clean machine pre-bootstrap).
-  return { name: "claude-code", configRoot: join(home, ".claude"), skillsDir: join(home, ".claude", "skills"), confidence: "assumed" };
+  return { name: "claude-code", configRoot: join(home, ".config", "LIFEOS", "runtime"), skillsDir: join(home, ".claude", "skills"), confidence: "assumed" };
 }
 
 /**
@@ -170,7 +172,7 @@ export function detectEnv(): EnvDetection {
   const home = homedir();
   const os = detectOS();
   const harness = detectHarness(home);
-  const configRoot = harness.configRoot || join(home, ".claude");
+  const configRoot = harness.configRoot || join(home, ".config", "LIFEOS", "runtime");
   const settingsPath = join(configRoot, "settings.json");
   const claudeMdPath = join(configRoot, "CLAUDE.md");
   const ssh = !!(process.env.SSH_CONNECTION || process.env.SSH_TTY || process.env.SSH_CLIENT);

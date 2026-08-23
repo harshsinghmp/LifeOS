@@ -36,7 +36,7 @@ import { homedir } from "node:os";
 // Path Construction
 
 const HOME = process.env.HOME ?? process.env.USERPROFILE ?? homedir()
-const LIFEOS_DIR = join(HOME, ".claude", "LIFEOS")
+const LIFEOS_DIR = join(HOME, ".config", "LIFEOS", "runtime")
 const DOCUMENTATION_DIR = join(LIFEOS_DIR, "DOCUMENTATION")
 const KNOWLEDGE_DIR = join(LIFEOS_DIR, "MEMORY", "KNOWLEDGE")
 const ALGORITHM_DIR = join(LIFEOS_DIR, "ALGORITHM")

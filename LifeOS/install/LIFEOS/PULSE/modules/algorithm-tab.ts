@@ -41,7 +41,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 
 const MODULE_NAME = "algorithm-tab";
-const HOME = process.env.CLAUDE_CONFIG_DIR || join(homedir(), ".claude");
+const HOME = process.env.LIFEOS_CONFIG_ROOT || process.env.CLAUDE_CONFIG_DIR || join(homedir(), ".claude");
 const LIFEOS_DIR = join(HOME, "LIFEOS");
 const ALGO_DIR = join(LIFEOS_DIR, "ALGORITHM");
 const STATE_PATH = join(LIFEOS_DIR, "MEMORY", "STATE", "algorithm-tab-summary.json");

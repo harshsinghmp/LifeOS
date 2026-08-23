@@ -392,7 +392,7 @@ function deploy(component: Component, ctx: Ctx): ComponentResult {
 function main(): void {
   const a = process.argv.slice(2);
   const home = process.env.HOME || homedir(); // public issue #1729, @umair-a11y
-  const configRoot = arg(a, "--config-root") || process.env.CLAUDE_CONFIG_DIR || join(home, ".claude");
+  const configRoot = arg(a, "--config-root") || process.env.LIFEOS_CONFIG_ROOT || process.env.CLAUDE_CONFIG_DIR || join(home, ".config", "LIFEOS", "runtime");
   const skillRoot = arg(a, "--skill-root") || join(import.meta.dir, "..");
   const apply = a.includes("--apply");
   const allowDev = a.includes("--allow-dev");

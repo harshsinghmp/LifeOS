@@ -20,7 +20,7 @@ import { PULSE_BASE } from "./endpoint"
 import { homedir } from "node:os";
 
 const HOME = process.env.HOME ?? process.env.USERPROFILE ?? homedir()
-const LIFEOS_DIR = join(HOME, ".claude", "LIFEOS")
+const LIFEOS_DIR = join(HOME, ".config", "LIFEOS", "runtime")
 const PULSE_DIR = join(LIFEOS_DIR, "PULSE")
 
 // ── Helpers ──
